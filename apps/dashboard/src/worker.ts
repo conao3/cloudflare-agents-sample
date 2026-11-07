@@ -6,6 +6,12 @@ export default {
     if (sample === undefined) {
       return new Response("Not found", { status: 404 })
     }
-    return env[sample.binding].fetch(request)
+    const service: Fetcher | undefined = env[sample.binding]
+    if (service === undefined) {
+      return new Response(`${sample.title} is not deployed here: ${sample.localOnly ?? ""}`, {
+        status: 404,
+      })
+    }
+    return service.fetch(request)
   },
 } satisfies ExportedHandler<Env>

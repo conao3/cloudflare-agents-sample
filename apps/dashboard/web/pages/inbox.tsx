@@ -4,7 +4,11 @@ import { useState } from "react"
 import { Button, Card, ConnectionBadge, Field, formatTime, inputClass } from "../ui.tsx"
 
 export const InboxPage = () => {
-  const agent = useAgent<InboxState>({ agent: "inbox-agent", name: inboxName })
+  const agent = useAgent<InboxState>({
+    agent: "inbox-agent",
+    name: inboxName,
+    defaultCallTimeout: 120_000,
+  })
   const connected = agent.identified
   const threads = agent.state?.threads ?? []
   const [from, setFrom] = useState("bob@example.com")

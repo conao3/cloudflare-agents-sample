@@ -19,7 +19,11 @@ const sampleDocs = [
 ]
 
 export const RagPage = () => {
-  const agent = useAgent<RagState>({ agent: "rag-agent", name: "default" })
+  const agent = useAgent<RagState>({
+    agent: "rag-agent",
+    name: "default",
+    defaultCallTimeout: 120_000,
+  })
   const connected = agent.identified
   const documents = agent.state?.documents ?? []
   const [title, setTitle] = useState("")

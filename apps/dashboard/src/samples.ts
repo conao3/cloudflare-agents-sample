@@ -23,6 +23,7 @@ export type Sample = {
   binding: Binding
   agents: readonly string[]
   paths: readonly string[]
+  localOnly?: string
 }
 
 export const samples = [
@@ -143,6 +144,7 @@ export const samples = [
     binding: "CODEMODE",
     agents: ["codemode-agent"],
     paths: [],
+    localOnly: "Dynamic Workers need Workers Paid, so this sample runs only with pnpm dev.",
   },
   {
     id: "research",

@@ -15,9 +15,14 @@ case "${1:-}" in
     exec wrangler dev --port "${PORT:-8790}" -c apps/dashboard/wrangler.jsonc "${config_flags[@]}"
     ;;
   deploy)
-    for config in "${configs[@]}" apps/dashboard/wrangler.jsonc; do
+    for config in "${configs[@]}"; do
+      if grep -q '"worker_loaders"' "$config"; then
+        printf '%s\n' "skip $config: Dynamic Workers need Workers Paid" >&2
+        continue
+      fi
       wrangler deploy -c "$config"
     done
+    wrangler deploy -c apps/dashboard/wrangler.jsonc --env production
     ;;
   types)
     for config in apps/dashboard/wrangler.jsonc "${configs[@]}"; do

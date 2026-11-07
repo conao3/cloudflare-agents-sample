@@ -14,7 +14,11 @@ type Output =
   | { kind: "error"; value: string }
 
 export const BrowserPage = () => {
-  const agent = useAgent<BrowserState>({ agent: "browser-agent", name: "default" })
+  const agent = useAgent<BrowserState>({
+    agent: "browser-agent",
+    name: "default",
+    defaultCallTimeout: 120_000,
+  })
   const connected = agent.identified
   const log = agent.state?.log ?? []
   const [url, setUrl] = useState("https://developers.cloudflare.com/agents/")

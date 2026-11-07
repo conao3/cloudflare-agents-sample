@@ -1,5 +1,5 @@
 import type { JSX } from "react"
-import { plannedSamples, samples } from "../src/samples.ts"
+import { plannedSamples, samples, type Sample } from "../src/samples.ts"
 import { BrowserPage } from "./pages/browser.tsx"
 import { ChatPage } from "./pages/chat.tsx"
 import { CodemodePage } from "./pages/codemode.tsx"
@@ -59,26 +59,47 @@ const CardBody = ({ sample, badge }: { sample: CardData; badge: JSX.Element }) =
   </>
 )
 
+const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname)
+
+const unavailable = (sample: Sample): string | undefined => (isLocal ? undefined : sample.localOnly)
+
 const SampleGrid = ({ kind }: { kind: "single" | "combo" }) => (
   <div className="grid gap-3 sm:grid-cols-2">
     {samples
       .filter((sample) => sample.kind === kind)
-      .map((sample) => (
-        <a
-          key={sample.id}
-          href={`#/${sample.id}`}
-          className="block rounded-lg border border-zinc-200 bg-white p-4 hover:border-orange-400 hover:shadow-sm"
-        >
-          <CardBody
-            sample={sample}
-            badge={
-              <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs text-orange-800">
-                Open
-              </span>
-            }
-          />
-        </a>
-      ))}
+      .map((sample) =>
+        unavailable(sample) !== undefined ? (
+          <div
+            key={sample.id}
+            title={unavailable(sample)}
+            className="cursor-not-allowed rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-4 opacity-70"
+          >
+            <CardBody
+              sample={sample}
+              badge={
+                <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500">
+                  Local only
+                </span>
+              }
+            />
+          </div>
+        ) : (
+          <a
+            key={sample.id}
+            href={`#/${sample.id}`}
+            className="block rounded-lg border border-zinc-200 bg-white p-4 hover:border-orange-400 hover:shadow-sm"
+          >
+            <CardBody
+              sample={sample}
+              badge={
+                <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs text-orange-800">
+                  Open
+                </span>
+              }
+            />
+          </a>
+        ),
+      )}
   </div>
 )
 
@@ -119,7 +140,8 @@ const Home = () => (
 export const App = () => {
   const route = useRoute()
   const sample = samples.find((s) => s.id === route)
-  const Page = sample === undefined ? undefined : pages[sample.id]
+  const Page =
+    sample === undefined || unavailable(sample) !== undefined ? undefined : pages[sample.id]
   return (
     <div className="min-h-screen bg-zinc-50">
       <header className="border-b border-zinc-200 bg-white">
