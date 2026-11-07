@@ -1,5 +1,6 @@
 import type { JSX } from "react"
 import { plannedSamples, samples, type Sample } from "../src/samples.ts"
+import { AiGatewayPage } from "./pages/ai-gateway.tsx"
 import { BrowserPage } from "./pages/browser.tsx"
 import { ChatPage } from "./pages/chat.tsx"
 import { CodemodePage } from "./pages/codemode.tsx"
@@ -11,6 +12,7 @@ import { RagPage } from "./pages/rag.tsx"
 import { ResearchPage } from "./pages/research.tsx"
 import { SchedulerPage } from "./pages/scheduler.tsx"
 import { StateCounterPage } from "./pages/state-counter.tsx"
+import { StoragePage } from "./pages/storage.tsx"
 import { SubAgentsPage } from "./pages/sub-agents.tsx"
 import { ThinkPage } from "./pages/think.tsx"
 import { ToolHubPage } from "./pages/tool-hub.tsx"
@@ -34,6 +36,8 @@ const pages: Record<SampleId, () => JSX.Element> = {
   think: ThinkPage,
   "sub-agents": SubAgentsPage,
   voice: VoicePage,
+  storage: StoragePage,
+  "ai-gateway": AiGatewayPage,
   research: ResearchPage,
   inbox: InboxPage,
   "tool-hub": ToolHubPage,

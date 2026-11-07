@@ -71,6 +71,8 @@ The `AI`, `BROWSER`, and `VECTORIZE` bindings run remotely, so `wrangler dev` of
 | `think`         | single | `Think`, workspace file tools, `submitMessages`                                    |
 | `sub-agents`    | single | `agentTool`, sub-agents, `useAgentToolEvents`, `createFetchTools`                  |
 | `voice`         | single | `withVoice`, `WorkersAIFluxSTT`, `WorkersAITTS`, `useVoiceAgent`                   |
+| `storage`       | single | agent state and SQLite, D1, KV                                                     |
+| `ai-gateway`    | single | AI Gateway `cacheTtl`, `aiGatewayLogId`, `getLog`                                  |
 | `research`      | combo  | chat + browser + approval + `scheduleEvery`                                        |
 | `inbox`         | combo  | email + Vectorize + Workers AI                                                     |
 | `tool-hub`      | combo  | MCP server + Browser Run + Vectorize                                               |

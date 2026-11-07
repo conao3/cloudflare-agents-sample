@@ -19,6 +19,8 @@ Small, self-contained samples of the [Cloudflare Agents](https://agents.cloudfla
 | [think](samples/think)                 | The Think harness: a ready-made agent loop with a workspace filesystem and background tasks |
 | [sub-agents](samples/sub-agents)       | A Think agent that hands work to Researcher and Planner sub-agents with `agentTool`         |
 | [voice](samples/voice)                 | A voice agent: Workers AI speech recognition, a model with tools, and speech                |
+| [storage](samples/storage)             | Agent state and SQLite next to D1 (shared SQL) and KV (expiring values)                     |
+| [ai-gateway](samples/ai-gateway)       | Workers AI through AI Gateway: caching and the per-request gateway log                      |
 
 | Combined sample             | Combines                               |
 | --------------------------- | -------------------------------------- |

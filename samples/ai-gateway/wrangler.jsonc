@@ -1,0 +1,12 @@
+{
+  "name": "cfas-ai-gateway",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "ai": { "binding": "AI", "remote": true },
+  "durable_objects": {
+    "bindings": [{ "name": "AiGatewayAgent", "class_name": "AiGatewayAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AiGatewayAgent"] }],
+}

@@ -12,6 +12,8 @@ export type Binding =
   | "THINK"
   | "SUB_AGENTS"
   | "VOICE"
+  | "STORAGE"
+  | "AI_GATEWAY"
   | "RESEARCH"
   | "INBOX"
   | "TOOL_HUB"
@@ -183,6 +185,30 @@ export const samples = [
     cost: "Free (about 14 min of speech recognition a day)",
     binding: "VOICE",
     agents: ["voice-agent"],
+    paths: [],
+  },
+  {
+    id: "storage",
+    kind: "single",
+    title: "D1 and KV",
+    summary:
+      "Where agent data can live: the agent's own state and SQLite, a D1 database shared by every agent, and KV for small values that expire.",
+    blocks: ["D1", "KV", "setState"],
+    cost: "Free",
+    binding: "STORAGE",
+    agents: ["storage-agent"],
+    paths: [],
+  },
+  {
+    id: "ai-gateway",
+    kind: "single",
+    title: "AI Gateway",
+    summary:
+      "Workers AI calls routed through AI Gateway: response caching with a TTL, request metadata, and the gateway log of each call (cache hit, latency, tokens).",
+    blocks: ["AI Gateway", "cacheTtl", "getLog"],
+    cost: "Free",
+    binding: "AI_GATEWAY",
+    agents: ["ai-gateway-agent"],
     paths: [],
   },
   {

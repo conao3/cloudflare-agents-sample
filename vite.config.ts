@@ -6,7 +6,7 @@ export default defineConfig({
     singleQuote: false,
     trailingComma: "all",
     sortPackageJson: false,
-    ignorePatterns: ["**/worker-configuration.d.ts", ".claude-dev/**"],
+    ignorePatterns: ["**/worker-configuration.d.ts", ".claude-dev/**", ".claude/**"],
   },
   lint: {
     categories: { correctness: "error", suspicious: "warn" },
@@ -16,6 +16,7 @@ export default defineConfig({
       ".direnv",
       ".wrangler",
       ".claude-dev",
+      ".claude",
       "**/worker-configuration.d.ts",
     ],
     options: { typeAware: true, typeCheck: true },
