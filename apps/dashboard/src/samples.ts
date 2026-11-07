@@ -9,6 +9,9 @@ export type Binding =
   | "EMAIL"
   | "RAG"
   | "CODEMODE"
+  | "THINK"
+  | "SUB_AGENTS"
+  | "VOICE"
   | "RESEARCH"
   | "INBOX"
   | "TOOL_HUB"
@@ -145,6 +148,42 @@ export const samples = [
     agents: ["codemode-agent"],
     paths: [],
     localOnly: "Dynamic Workers need Workers Paid, so this sample runs only with pnpm dev.",
+  },
+  {
+    id: "think",
+    kind: "single",
+    title: "Think harness",
+    summary:
+      "The Think base class: a ready-made durable agent loop with a persistent workspace filesystem, file tools, and background tasks submitted with submitMessages.",
+    blocks: ["Think", "getModel", "workspace", "submitMessages"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "THINK",
+    agents: ["think-agent"],
+    paths: [],
+  },
+  {
+    id: "sub-agents",
+    kind: "single",
+    title: "Sub-agents",
+    summary:
+      "A Think agent that hands work to Researcher and Planner sub-agents with agentTool; each helper runs its own loop and storage, and progress streams to the page.",
+    blocks: ["agentTool", "sub-agents", "useAgentToolEvents", "createFetchTools"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "SUB_AGENTS",
+    agents: ["sub-agents-agent"],
+    paths: [],
+  },
+  {
+    id: "voice",
+    kind: "single",
+    title: "Voice",
+    summary:
+      "Talk to an agent: microphone audio over WebSocket, Deepgram Flux speech recognition, a model with tools, and Deepgram Aura speech, all on Workers AI.",
+    blocks: ["withVoice", "WorkersAIFluxSTT", "WorkersAITTS", "useVoiceAgent"],
+    cost: "Free (about 14 min of speech recognition a day)",
+    binding: "VOICE",
+    agents: ["voice-agent"],
+    paths: [],
   },
   {
     id: "research",

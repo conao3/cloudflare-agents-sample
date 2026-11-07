@@ -11,7 +11,10 @@ import { RagPage } from "./pages/rag.tsx"
 import { ResearchPage } from "./pages/research.tsx"
 import { SchedulerPage } from "./pages/scheduler.tsx"
 import { StateCounterPage } from "./pages/state-counter.tsx"
+import { SubAgentsPage } from "./pages/sub-agents.tsx"
+import { ThinkPage } from "./pages/think.tsx"
 import { ToolHubPage } from "./pages/tool-hub.tsx"
+import { VoicePage } from "./pages/voice.tsx"
 import { WorkflowPage } from "./pages/workflow.tsx"
 import { useRoute } from "./route.ts"
 
@@ -28,6 +31,9 @@ const pages: Record<SampleId, () => JSX.Element> = {
   email: EmailPage,
   rag: RagPage,
   codemode: CodemodePage,
+  think: ThinkPage,
+  "sub-agents": SubAgentsPage,
+  voice: VoicePage,
   research: ResearchPage,
   inbox: InboxPage,
   "tool-hub": ToolHubPage,

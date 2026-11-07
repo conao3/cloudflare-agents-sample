@@ -6,5 +6,7 @@ runtimeOnFail: ignore
 pmOnFail: ignore
 allowBuilds:
   core-js-pure: false
+  "@mongodb-js/zstd": false
+  node-liblzma: false
 overrides:
   vite: npm:@voidzero-dev/vite-plus-core@1.4.0

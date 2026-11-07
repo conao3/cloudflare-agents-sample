@@ -1,4 +1,5 @@
 import { useAgentChat } from "@cloudflare/ai-chat/react"
+import { useAgentChat as useThinkChat } from "@cloudflare/think/react"
 import { getToolName, isToolUIPart, type UIMessage } from "ai"
 import { useAgent } from "agents/react"
 import { useEffect, useRef, useState, type ReactNode } from "react"
@@ -53,16 +54,19 @@ export const ChatView = ({
   suggestions,
   onTurnEnd,
   side,
+  harness = "ai-chat",
 }: {
   agentName: string
   instance: string
   suggestions: readonly string[]
   onTurnEnd?: () => void
   side?: ReactNode
+  harness?: "ai-chat" | "think"
 }) => {
   const agent = useAgent({ agent: agentName, name: instance })
+  const useChat = harness === "think" ? useThinkChat : useAgentChat
   const { messages, sendMessage, clearHistory, addToolApprovalResponse, stop, isStreaming, error } =
-    useAgentChat({
+    useChat({
       agent,
       onToolCall: async ({ toolCall, addToolOutput }) => {
         if (toolCall.toolName === "getLocalTime") {
