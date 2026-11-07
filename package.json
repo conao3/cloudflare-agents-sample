@@ -2,5 +2,17 @@
   "name": "cloudflare-agents-sample",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@12.9.0"
+  "packageManager": "pnpm@12.9.0",
+  "engines": {
+    "node": ">=26.12.0"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install-hooks.mjs && vp config --no-agent",
+    "dev": "vp run build && wrangler dev --port 8790 -c apps/dashboard/wrangler.jsonc -c samples/state-counter/wrangler.jsonc -c samples/scheduler/wrangler.jsonc",
+    "deploy": "vp run build && for c in samples/state-counter samples/scheduler apps/dashboard; do wrangler deploy -c $c/wrangler.jsonc || exit 1; done"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "vite-plus": "1.4.0"
+  }
 }

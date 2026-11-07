@@ -1,0 +1,11 @@
+{
+  "name": "cfas-state-counter",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "CounterAgent", "class_name": "CounterAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["CounterAgent"] }],
+}

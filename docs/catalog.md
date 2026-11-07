@@ -13,7 +13,7 @@ Packages: `agents` (core, 0.33.x), `@cloudflare/ai-chat` (`AIChatAgent`), `@clou
 ## Building blocks
 
 | Block | What it does | Main API |
-|---|---|---|
+| ---------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | Agent class | Durable Object with lifecycle hooks | `Agent<Env, State>`, `onStart` / `onRequest` / `onConnect` / `onMessage` / `onEmail`, `routeAgentRequest(request, env)`, `getAgentByName()` |
 | State | JSON state synced to every connected client | `initialState`, `this.setState()`, `onStateChanged()`; client `useAgent` (`agents/react`), `AgentClient` |
 | SQL | Embedded SQLite per agent | ``this.sql`select ...` `` |
@@ -38,35 +38,35 @@ Packages: `agents` (core, 0.33.x), `@cloudflare/ai-chat` (`AIChatAgent`), `@clou
 
 ## Free plan limits relevant to the samples
 
-| Product | Free plan |
-|---|---|
-| Workers | 100,000 requests/day, 10 ms CPU per invocation |
-| Durable Objects | SQLite-backed only; 100,000 requests/day, 13,000 GB-s/day, 5 GB storage |
-| Workers AI | 10,000 Neurons/day. Large models (`@cf/zai-org/glm-5.3-flash`, the Quick Start default, and `kimi-k2.x`, `deepseek-v4`) need Workers Paid |
-| Workflows | 3,000 steps/day |
-| Browser Run | 10 browser minutes/day, 3 concurrent browsers |
-| Vectorize | Docs say Workers Paid only |
-| Containers (Sandbox) | No free tier |
+| Product              | Free plan                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Workers              | 100,000 requests/day, 10 ms CPU per invocation                                                                                            |
+| Durable Objects      | SQLite-backed only; 100,000 requests/day, 13,000 GB-s/day, 5 GB storage                                                                   |
+| Workers AI           | 10,000 Neurons/day. Large models (`@cf/zai-org/glm-5.3-flash`, the Quick Start default, and `kimi-k2.x`, `deepseek-v4`) need Workers Paid |
+| Workflows            | 3,000 steps/day                                                                                                                           |
+| Browser Run          | 10 browser minutes/day, 3 concurrent browsers                                                                                             |
+| Vectorize            | Docs say Workers Paid only                                                                                                                |
+| Containers (Sandbox) | No free tier                                                                                                                              |
 
 Workers Paid is USD 5/month. Sources: <https://developers.cloudflare.com/workers/platform/pricing/>, <https://developers.cloudflare.com/durable-objects/platform/pricing/>, <https://developers.cloudflare.com/workers-ai/platform/pricing/>, <https://developers.cloudflare.com/browser-run/pricing/>.
 
 The `AI` binding always runs remotely, so `wrangler dev` of an AI sample needs `wrangler login`.
 
-## Planned single samples
+## Single samples
 
-| Sample | Shows | Cost |
-|---|---|---|
-| `state-counter` | Agent class, `setState` sync to two browser tabs, `@callable` RPC, SQL | free, runs fully local |
-| `scheduler` | `schedule` with delay, date, cron, and `scheduleEvery`; listing and cancelling | free, local |
-| `chat` | `AIChatAgent` with a Workers AI model, persisted history, one tool with approval | free model, needs login |
-| `mcp-server` | `createMcpHandler` exposing tools, used from Claude Code | free |
-| `mcp-client` | Agent connecting to a remote MCP server and calling its tools | free |
-| `workflow` | Workflow started from an agent, with `waitForApproval` | free |
-| `browser` | Browser Run: fetch a page, take a screenshot | free within 10 min/day |
-| `email` | `onEmail` through Email Routing and an auto-reply | free, needs a zone with Email Routing |
-| `rag` | Vectorize or AI Search over a small document set | Workers Paid |
-| `codemode` | Code Mode over a few tools | free model may be weak; check |
-| `sandbox` | Sandbox SDK running a shell command | Containers, paid |
+| Sample          | Shows                                                                            | Cost                                  | Status  |
+| --------------- | -------------------------------------------------------------------------------- | ------------------------------------- | ------- |
+| `state-counter` | Agent class, `setState` sync to two browser tabs, `@callable` RPC, SQL           | free, runs fully local                | done    |
+| `scheduler`     | `schedule` with delay, date, cron, and `scheduleEvery`; listing and cancelling   | free, local                           | done    |
+| `chat`          | `AIChatAgent` with a Workers AI model, persisted history, one tool with approval | free model, needs login               | planned |
+| `mcp-server`    | `createMcpHandler` exposing tools, used from Claude Code                         | free                                  | planned |
+| `mcp-client`    | Agent connecting to a remote MCP server and calling its tools                    | free                                  | planned |
+| `workflow`      | Workflow started from an agent, with `waitForApproval`                           | free                                  | planned |
+| `browser`       | Browser Run: fetch a page, take a screenshot                                     | free within 10 min/day                | planned |
+| `email`         | `onEmail` through Email Routing and an auto-reply                                | free, needs a zone with Email Routing | planned |
+| `rag`           | Vectorize or AI Search over a small document set                                 | Workers Paid                          | planned |
+| `codemode`      | Code Mode over a few tools                                                       | free model may be weak; check         | planned |
+| `sandbox`       | Sandbox SDK running a shell command                                              | Containers, paid                      | planned |
 
 ## Combined samples (after the single ones)
 

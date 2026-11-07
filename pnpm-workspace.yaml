@@ -1,4 +1,9 @@
 packages:
+  - apps/*
   - samples/*
 runtimeOnFail: ignore
 pmOnFail: ignore
+allowBuilds:
+  core-js-pure: false
+overrides:
+  vite: npm:@voidzero-dev/vite-plus-core@1.4.0

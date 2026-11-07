@@ -1,0 +1,19 @@
+{
+  "name": "@cfas/dashboard",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@cfas/scheduler": "workspace:*",
+    "@cfas/state-counter": "workspace:*",
+    "agents": "^0.33.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "tailwindcss": "^4.1.0"
+  }
+}
