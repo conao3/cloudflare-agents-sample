@@ -37,7 +37,7 @@ const Runs = () => {
       {runs.length === 0 ? (
         <p className="text-sm text-zinc-500">
           Each research or plan call starts a Researcher or Planner sub-agent with its own model
-          loop and storage. A turn that uses both helpers takes a few minutes.
+          loop and storage. A turn that uses both helpers takes from half a minute to a few minutes.
         </p>
       ) : (
         <ul className="flex flex-col gap-2 text-sm">
