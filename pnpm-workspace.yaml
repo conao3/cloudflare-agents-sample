@@ -1,0 +1,4 @@
+packages:
+  - samples/*
+runtimeOnFail: ignore
+pmOnFail: ignore

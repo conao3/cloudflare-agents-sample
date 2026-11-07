@@ -1,0 +1,6 @@
+{
+  "name": "cloudflare-agents-sample",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.9.0"
+}
