@@ -38,38 +38,45 @@ Packages: `agents` (core, 0.33.x), `@cloudflare/ai-chat` (`AIChatAgent`), `@clou
 
 ## Free plan limits relevant to the samples
 
-| Product              | Free plan                                                                                                                                 |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Workers              | 100,000 requests/day, 10 ms CPU per invocation                                                                                            |
-| Durable Objects      | SQLite-backed only; 100,000 requests/day, 13,000 GB-s/day, 5 GB storage                                                                   |
-| Workers AI           | 10,000 Neurons/day. Large models (`@cf/zai-org/glm-5.3-flash`, the Quick Start default, and `kimi-k2.x`, `deepseek-v4`) need Workers Paid |
-| Workflows            | 3,000 steps/day                                                                                                                           |
-| Browser Run          | 10 browser minutes/day, 3 concurrent browsers                                                                                             |
-| Vectorize            | Docs say Workers Paid only                                                                                                                |
-| Containers (Sandbox) | No free tier                                                                                                                              |
+| Product              | Free plan                                                                                                                                                                                      |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workers              | 100,000 requests/day, 10 ms CPU per invocation                                                                                                                                                 |
+| Durable Objects      | SQLite-backed only; 100,000 requests/day, 13,000 GB-s/day, 5 GB storage                                                                                                                        |
+| Workers AI           | 10,000 Neurons/day. `@cf/zai-org/glm-4.7-flash` (function calling) and `@cf/baai/bge-m3` are free; `glm-5.3-flash` (the Quick Start default), `kimi-k2.x`, and `deepseek-v4` need Workers Paid |
+| Workflows            | 100,000 requests/day, 3,000 steps/day, 1,024 steps per workflow                                                                                                                                |
+| Browser Run          | 10 browser minutes/day, 3 concurrent browsers; quick actions answer 429 above a few requests per minute                                                                                        |
+| Vectorize            | 30 million queried and 5 million stored vector dimensions per month                                                                                                                            |
+| Email Routing        | Inbound mail is free; it needs the zone's MX to point to Cloudflare                                                                                                                            |
+| AI Search            | Billing starts 2026-12-01                                                                                                                                                                      |
+| Containers (Sandbox) | No free tier                                                                                                                                                                                   |
 
-Workers Paid is USD 5/month. Sources: <https://developers.cloudflare.com/workers/platform/pricing/>, <https://developers.cloudflare.com/durable-objects/platform/pricing/>, <https://developers.cloudflare.com/workers-ai/platform/pricing/>, <https://developers.cloudflare.com/browser-run/pricing/>.
+On the Free plan, going over a limit makes the request fail; nothing is billed. Workers Paid is USD 5/month. Sources: <https://developers.cloudflare.com/workers/platform/pricing/>, <https://developers.cloudflare.com/durable-objects/platform/pricing/>, <https://developers.cloudflare.com/workers-ai/platform/pricing/>, <https://developers.cloudflare.com/workers-ai/models/glm-4.7-flash/>, <https://developers.cloudflare.com/workflows/reference/pricing/>, <https://developers.cloudflare.com/browser-run/pricing/>, <https://developers.cloudflare.com/vectorize/platform/pricing/>, <https://developers.cloudflare.com/email-service/platform/pricing/>, <https://developers.cloudflare.com/ai-search/platform/limits-pricing/>.
 
-The `AI` binding always runs remotely, so `wrangler dev` of an AI sample needs `wrangler login`.
+The `AI`, `BROWSER`, and `VECTORIZE` bindings run remotely, so `wrangler dev` of those samples needs `wrangler login`.
 
-## Single samples
+## Samples
 
-| Sample          | Shows                                                                            | Cost                                  | Status  |
-| --------------- | -------------------------------------------------------------------------------- | ------------------------------------- | ------- |
-| `state-counter` | Agent class, `setState` sync to two browser tabs, `@callable` RPC, SQL           | free, runs fully local                | done    |
-| `scheduler`     | `schedule` with delay, date, cron, and `scheduleEvery`; listing and cancelling   | free, local                           | done    |
-| `chat`          | `AIChatAgent` with a Workers AI model, persisted history, one tool with approval | free model, needs login               | planned |
-| `mcp-server`    | `createMcpHandler` exposing tools, used from Claude Code                         | free                                  | planned |
-| `mcp-client`    | Agent connecting to a remote MCP server and calling its tools                    | free                                  | planned |
-| `workflow`      | Workflow started from an agent, with `waitForApproval`                           | free                                  | planned |
-| `browser`       | Browser Run: fetch a page, take a screenshot                                     | free within 10 min/day                | planned |
-| `email`         | `onEmail` through Email Routing and an auto-reply                                | free, needs a zone with Email Routing | planned |
-| `rag`           | Vectorize or AI Search over a small document set                                 | Workers Paid                          | planned |
-| `codemode`      | Code Mode over a few tools                                                       | free model may be weak; check         | planned |
-| `sandbox`       | Sandbox SDK running a shell command                                              | Containers, paid                      | planned |
+| Sample          | Kind   | Building blocks                                                                    |
+| --------------- | ------ | ---------------------------------------------------------------------------------- |
+| `state-counter` | single | Agent class, `setState`, `@callable`, `this.sql`                                   |
+| `scheduler`     | single | `schedule` (delay, date, cron), `scheduleEvery`, `listSchedules`, `cancelSchedule` |
+| `chat`          | single | `AIChatAgent`, Workers AI, server / browser-side / approval tools                  |
+| `mcp-server`    | single | `createMcpHandler`, `McpServer`                                                    |
+| `mcp-client`    | single | `addMcpServer`, `mcp.callTool`, `onMcpUpdate`                                      |
+| `workflow`      | single | `runWorkflow`, `AgentWorkflow`, `waitForApproval`                                  |
+| `browser`       | single | Browser Run quick actions, `createQuickActionTools`                                |
+| `email`         | single | `onEmail`, `routeAgentEmail`, `replyToEmail` (simulated mail from the dashboard)   |
+| `rag`           | single | Vectorize, `@cf/baai/bge-m3` embeddings, cited answers                             |
+| `codemode`      | single | `createCodeTool`, `DynamicWorkerExecutor`, `worker_loaders`                        |
+| `research`      | combo  | chat + browser + approval + `scheduleEvery`                                        |
+| `inbox`         | combo  | email + Vectorize + Workers AI                                                     |
+| `tool-hub`      | combo  | MCP server + Browser Run + Vectorize                                               |
 
-## Combined samples (after the single ones)
+## Left out
 
-- Research assistant: `chat` + `browser` + `workflow` (approval before a long crawl) + `scheduler` (daily re-run).
-- Inbox agent: `email` + `chat` + `mcp-client` (look things up) + reply.
-- Tool hub: `mcp-server` that wraps `browser` and `rag`, used from Claude Code.
+| Block                                                              | Why                                                                                              |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Sandbox SDK                                                        | Runs on Containers, which have no free tier                                                      |
+| AI Search                                                          | Billed from 2026-12-01                                                                           |
+| Sending mail to arbitrary addresses (`send_email` / Email Service) | Needs Workers Paid                                                                               |
+| Real inbound mail for `email` and `inbox`                          | The available zone's MX points to another mail provider; the samples take simulated mail instead |

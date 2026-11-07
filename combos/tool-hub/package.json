@@ -1,0 +1,12 @@
+{
+  "name": "@cfas/tool-hub",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "agents": "^0.33.0",
+    "ai": "^7.0.0",
+    "workers-ai-provider": "^4.0.1",
+    "zod": "^4.0.0"
+  }
+}

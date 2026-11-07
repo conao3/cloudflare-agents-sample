@@ -1,6 +1,7 @@
 packages:
   - apps/*
   - samples/*
+  - combos/*
 runtimeOnFail: ignore
 pmOnFail: ignore
 allowBuilds:

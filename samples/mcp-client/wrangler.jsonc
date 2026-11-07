@@ -1,0 +1,11 @@
+{
+  "name": "cfas-mcp-client",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "McpClientAgent", "class_name": "McpClientAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["McpClientAgent"] }],
+}

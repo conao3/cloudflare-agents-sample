@@ -1,0 +1,14 @@
+{
+  "name": "@cfas/inbox",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./types": "./src/types.ts"
+  },
+  "dependencies": {
+    "agents": "^0.33.0",
+    "ai": "^7.0.0",
+    "postal-mime": "^2.7.5",
+    "workers-ai-provider": "^4.0.1"
+  }
+}

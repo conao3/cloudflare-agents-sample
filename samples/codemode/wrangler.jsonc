@@ -1,0 +1,13 @@
+{
+  "name": "cfas-codemode",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "ai": { "binding": "AI", "remote": true },
+  "worker_loaders": [{ "binding": "LOADER" }],
+  "durable_objects": {
+    "bindings": [{ "name": "CodemodeAgent", "class_name": "CodemodeAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["CodemodeAgent"] }],
+}

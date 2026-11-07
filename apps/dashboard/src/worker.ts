@@ -1,11 +1,8 @@
-import { routedSamples } from "./samples.ts"
-
-const agentPath = /^\/agents\/([^/]+)\//
+import { findSample } from "./samples.ts"
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const agent = agentPath.exec(new URL(request.url).pathname)?.[1]
-    const sample = routedSamples.find((s) => s.agent === agent)
+    const sample = findSample(new URL(request.url).pathname)
     if (sample === undefined) {
       return new Response("Not found", { status: 404 })
     }

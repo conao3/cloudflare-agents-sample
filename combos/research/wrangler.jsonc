@@ -1,0 +1,13 @@
+{
+  "name": "cfas-research",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "browser": { "binding": "BROWSER", "remote": true },
+  "ai": { "binding": "AI", "remote": true },
+  "durable_objects": {
+    "bindings": [{ "name": "ResearchAgent", "class_name": "ResearchAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ResearchAgent"] }],
+}

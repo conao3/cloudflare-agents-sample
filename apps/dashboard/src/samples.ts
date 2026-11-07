@@ -1,94 +1,205 @@
-export type SampleStatus = "ready" | "planned"
+export type Binding =
+  | "STATE_COUNTER"
+  | "SCHEDULER"
+  | "CHAT"
+  | "MCP_SERVER"
+  | "MCP_CLIENT"
+  | "WORKFLOW"
+  | "BROWSER"
+  | "EMAIL"
+  | "RAG"
+  | "CODEMODE"
+  | "RESEARCH"
+  | "INBOX"
+  | "TOOL_HUB"
 
 export type Sample = {
   id: string
+  kind: "single" | "combo"
   title: string
   summary: string
   blocks: readonly string[]
-  status: SampleStatus
   cost: string
+  binding: Binding
+  agents: readonly string[]
+  paths: readonly string[]
 }
 
-export type RoutedSample = Sample & {
-  status: "ready"
-  agent: string
-  binding: "STATE_COUNTER" | "SCHEDULER"
-}
-
-export const routedSamples = [
+export const samples = [
   {
     id: "state-counter",
+    kind: "single",
     title: "State counter",
     summary:
       "An agent per name with state synced to every open tab, @callable RPC, and an SQLite history table.",
     blocks: ["Agent", "setState", "@callable", "this.sql"],
-    status: "ready",
     cost: "Free",
-    agent: "counter-agent",
     binding: "STATE_COUNTER",
+    agents: ["counter-agent"],
+    paths: [],
   },
   {
     id: "scheduler",
+    kind: "single",
     title: "Scheduler",
     summary: "Delayed, dated, cron, and interval tasks that wake the agent and record each run.",
     blocks: ["schedule", "scheduleEvery", "listSchedules", "cancelSchedule"],
-    status: "ready",
     cost: "Free",
-    agent: "scheduler-agent",
     binding: "SCHEDULER",
+    agents: ["scheduler-agent"],
+    paths: [],
   },
-] as const satisfies readonly RoutedSample[]
-
-export const plannedSamples = [
   {
     id: "chat",
+    kind: "single",
     title: "Chat",
     summary:
-      "AIChatAgent on a Workers AI model, persisted history, and a tool that waits for approval.",
-    blocks: ["AIChatAgent", "Workers AI", "useAgentChat"],
-    status: "planned",
-    cost: "Free model",
+      "AIChatAgent on a Workers AI model with persisted history, a server tool, a browser-side tool, and a tool that waits for approval.",
+    blocks: ["AIChatAgent", "Workers AI", "useAgentChat", "needsApproval"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "CHAT",
+    agents: ["chat-agent"],
+    paths: [],
   },
   {
     id: "mcp-server",
+    kind: "single",
     title: "MCP server",
-    summary: "Tools exposed with createMcpHandler and used from Claude Code.",
-    blocks: ["createMcpHandler"],
-    status: "planned",
+    summary:
+      "A stateless MCP server made with createMcpHandler, served at /mcp for Claude Code and other clients.",
+    blocks: ["createMcpHandler", "McpServer"],
     cost: "Free",
+    binding: "MCP_SERVER",
+    agents: [],
+    paths: ["/mcp"],
   },
   {
     id: "mcp-client",
+    kind: "single",
     title: "MCP client",
-    summary: "An agent that connects to a remote MCP server and calls its tools.",
-    blocks: ["addMcpServer", "mcp.getAITools"],
-    status: "planned",
+    summary: "An agent that connects to remote MCP servers, lists their tools, and calls them.",
+    blocks: ["addMcpServer", "mcp.callTool", "onMcpUpdate"],
     cost: "Free",
+    binding: "MCP_CLIENT",
+    agents: ["mcp-client-agent"],
+    paths: [],
   },
   {
     id: "workflow",
+    kind: "single",
     title: "Workflow",
-    summary: "A durable multi-step Workflow started from an agent, paused for human approval.",
-    blocks: ["runWorkflow", "waitForApproval"],
-    status: "planned",
-    cost: "Free",
+    summary:
+      "A durable multi-step Workflow started from an agent that pauses until a human approves or rejects it.",
+    blocks: ["runWorkflow", "AgentWorkflow", "waitForApproval", "onWorkflowProgress"],
+    cost: "Free (3,000 steps/day)",
+    binding: "WORKFLOW",
+    agents: ["workflow-agent"],
+    paths: [],
   },
   {
     id: "browser",
+    kind: "single",
     title: "Browser",
-    summary: "Browser Run reads a page and takes a screenshot.",
-    blocks: ["agents/browser"],
-    status: "planned",
-    cost: "Free, 10 min/day",
+    summary:
+      "Browser Run quick actions: page to Markdown, links, screenshots, and a model that reads a page to answer.",
+    blocks: ["agents/browser", "Browser Run", "createQuickActionTools"],
+    cost: "Free (10 browser minutes/day)",
+    binding: "BROWSER",
+    agents: ["browser-agent"],
+    paths: [],
   },
   {
     id: "email",
+    kind: "single",
     title: "Email",
-    summary: "Mail received through Email Routing wakes the agent, which replies.",
-    blocks: ["onEmail", "replyToEmail"],
-    status: "planned",
+    summary:
+      "An agent that receives mail, keeps an inbox, and replies. The dashboard injects simulated mail.",
+    blocks: ["onEmail", "routeAgentEmail", "replyToEmail"],
     cost: "Free",
+    binding: "EMAIL",
+    agents: ["email-agent"],
+    paths: [],
+  },
+  {
+    id: "rag",
+    kind: "single",
+    title: "RAG",
+    summary:
+      "Documents chunked and embedded into Vectorize, searched by meaning, and used to answer with citations.",
+    blocks: ["Vectorize", "Workers AI embeddings", "generateText"],
+    cost: "Free (Vectorize free tier)",
+    binding: "RAG",
+    agents: ["rag-agent"],
+    paths: [],
+  },
+  {
+    id: "codemode",
+    kind: "single",
+    title: "Code Mode",
+    summary:
+      "The model writes one JavaScript program that calls the todo tools, run in a sandboxed Dynamic Worker.",
+    blocks: ["createCodeTool", "DynamicWorkerExecutor", "worker_loaders"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "CODEMODE",
+    agents: ["codemode-agent"],
+    paths: [],
+  },
+  {
+    id: "research",
+    kind: "combo",
+    title: "Research assistant",
+    summary:
+      "Chat + Browser Run + approval + scheduling: the model reads pages, and after you approve it, re-reads a page on an interval and keeps summaries.",
+    blocks: ["AIChatAgent", "Browser Run", "needsApproval", "scheduleEvery"],
+    cost: "Free (Workers AI + 10 browser minutes/day)",
+    binding: "RESEARCH",
+    agents: ["research-agent"],
+    paths: [],
+  },
+  {
+    id: "inbox",
+    kind: "combo",
+    title: "Support inbox",
+    summary:
+      "Email + RAG + Workers AI: each incoming mail is answered from the documents stored by the RAG sample, with the sources it used.",
+    blocks: ["onEmail", "Vectorize", "generateText", "replyToEmail"],
+    cost: "Free",
+    binding: "INBOX",
+    agents: ["inbox-agent"],
+    paths: [],
+  },
+  {
+    id: "tool-hub",
+    kind: "combo",
+    title: "Tool hub (MCP)",
+    summary:
+      "MCP server + Browser Run + RAG: one MCP endpoint that lets Claude Code read web pages and search or ask the RAG documents.",
+    blocks: ["createMcpHandler", "Browser Run", "Vectorize"],
+    cost: "Free (10 browser minutes/day)",
+    binding: "TOOL_HUB",
+    agents: [],
+    paths: ["/hub/mcp"],
   },
 ] as const satisfies readonly Sample[]
 
-export const samples: readonly Sample[] = [...routedSamples, ...plannedSamples]
+export const plannedSamples = [
+  {
+    id: "sandbox",
+    kind: "single",
+    title: "Sandbox",
+    summary: "The Sandbox SDK running shell commands in a container.",
+    blocks: ["Sandbox SDK", "Containers"],
+    cost: "Needs Workers Paid (Containers have no free tier)",
+  },
+] as const
+
+const agentPath = /^\/agents\/([^/]+)(\/|$)/
+
+export const findSample = (pathname: string): Sample | undefined => {
+  const agent = agentPath.exec(pathname)?.[1]
+  return samples.find(
+    (s: Sample) =>
+      (agent !== undefined && s.agents.includes(agent)) ||
+      s.paths.some((p) => pathname === p || pathname.startsWith(`${p}/`)),
+  )
+}

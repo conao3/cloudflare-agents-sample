@@ -6,7 +6,7 @@ export default defineConfig({
     singleQuote: false,
     trailingComma: "all",
     sortPackageJson: false,
-    ignorePatterns: ["**/worker-configuration.d.ts"],
+    ignorePatterns: ["**/worker-configuration.d.ts", ".claude-dev/**"],
   },
   lint: {
     categories: { correctness: "error", suspicious: "warn" },
@@ -15,6 +15,7 @@ export default defineConfig({
       "dist",
       ".direnv",
       ".wrangler",
+      ".claude-dev",
       "**/worker-configuration.d.ts",
     ],
     options: { typeAware: true, typeCheck: true },
@@ -27,8 +28,7 @@ export default defineConfig({
         cache: { input: [{ auto: true }, "!apps/dashboard/dist/**"] },
       },
       types: {
-        command:
-          "for c in apps/dashboard samples/state-counter samples/scheduler; do (cd $c && wrangler types); done",
+        command: "scripts/workers.sh types",
         cache: false,
       },
     },

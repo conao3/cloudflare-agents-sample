@@ -8,8 +8,8 @@
   },
   "scripts": {
     "postinstall": "node scripts/install-hooks.mjs && vp config --no-agent",
-    "dev": "vp run build && wrangler dev --port 8790 -c apps/dashboard/wrangler.jsonc -c samples/state-counter/wrangler.jsonc -c samples/scheduler/wrangler.jsonc",
-    "deploy": "vp run build && for c in samples/state-counter samples/scheduler apps/dashboard; do wrangler deploy -c $c/wrangler.jsonc || exit 1; done"
+    "dev": "vp run build && scripts/workers.sh dev",
+    "deploy": "vp run build && scripts/workers.sh deploy"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
