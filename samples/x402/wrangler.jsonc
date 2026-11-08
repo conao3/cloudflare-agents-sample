@@ -1,0 +1,8 @@
+{
+  "name": "cfas-x402",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "vars": { "X402_RECIPIENT": "0x000000000000000000000000000000000000dEaD" },
+}

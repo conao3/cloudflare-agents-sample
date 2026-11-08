@@ -8,6 +8,7 @@
     "@cfas/chat": "workspace:*",
     "@cfas/email": "workspace:*",
     "@cfas/inbox": "workspace:*",
+    "@cfas/mcp-client": "workspace:*",
     "@cfas/rag": "workspace:*",
     "@cfas/research": "workspace:*",
     "@cfas/scheduler": "workspace:*",

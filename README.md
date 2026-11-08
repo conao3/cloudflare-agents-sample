@@ -4,21 +4,24 @@ Small, self-contained samples of the [Cloudflare Agents](https://agents.cloudfla
 
 ## Samples
 
-| Sample                                 | Shows                                                                                       |
-| -------------------------------------- | ------------------------------------------------------------------------------------------- |
-| [state-counter](samples/state-counter) | An agent per name, state synced to every tab, `@callable` RPC, SQLite                       |
-| [scheduler](samples/scheduler)         | Delayed, dated, cron, and interval schedules                                                |
-| [chat](samples/chat)                   | `AIChatAgent` on Workers AI with server, browser-side, and approval tools                   |
-| [mcp-server](samples/mcp-server)       | A stateless MCP server with `createMcpHandler`                                              |
-| [mcp-client](samples/mcp-client)       | An agent that connects to MCP servers and calls their tools                                 |
-| [workflow](samples/workflow)           | A Workflow started from an agent that waits for human approval                              |
-| [browser](samples/browser)             | Browser Run quick actions and a model that reads pages                                      |
-| [email](samples/email)                 | `onEmail` and `replyToEmail`, with simulated mail from the dashboard                        |
-| [rag](samples/rag)                     | Vectorize and Workers AI embeddings with cited answers                                      |
-| [codemode](samples/codemode)           | Code Mode: the model writes a program that runs in a Dynamic Worker                         |
-| [think](samples/think)                 | The Think harness: a ready-made agent loop with a workspace filesystem and background tasks |
-| [sub-agents](samples/sub-agents)       | A Think agent that hands work to Researcher and Planner sub-agents with `agentTool`         |
-| [voice](samples/voice)                 | A voice agent: Workers AI speech recognition, a model with tools, and speech                |
+| Sample                                     | Shows                                                                                               |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| [state-counter](samples/state-counter)     | An agent per name, state synced to every tab, `@callable` RPC, SQLite                               |
+| [scheduler](samples/scheduler)             | Delayed, dated, cron, and interval schedules                                                        |
+| [chat](samples/chat)                       | `AIChatAgent` on Workers AI with server, browser-side, and approval tools                           |
+| [mcp-server](samples/mcp-server)           | A stateless MCP server with `createMcpHandler`                                                      |
+| [mcp-client](samples/mcp-client)           | An agent that connects to MCP servers, authorizes with OAuth, answers elicitations, and calls tools |
+| [mcp-oauth](samples/mcp-oauth)             | An MCP server behind OAuth 2.1 with `workers-oauth-provider` and a demo consent page                |
+| [mcp-elicitation](samples/mcp-elicitation) | A stateless MCP tool that asks the user for input in two rounds (MRTR)                              |
+| [x402](samples/x402)                       | An MCP tool priced in USDC on a testnet with x402 `paidTool`                                        |
+| [workflow](samples/workflow)               | A Workflow started from an agent that waits for human approval                                      |
+| [browser](samples/browser)                 | Browser Run quick actions and a model that reads pages                                              |
+| [email](samples/email)                     | `onEmail` and `replyToEmail`, with simulated mail from the dashboard                                |
+| [rag](samples/rag)                         | Vectorize and Workers AI embeddings with cited answers                                              |
+| [codemode](samples/codemode)               | Code Mode: the model writes a program that runs in a Dynamic Worker                                 |
+| [think](samples/think)                     | The Think harness: a ready-made agent loop with a workspace filesystem and background tasks         |
+| [sub-agents](samples/sub-agents)           | A Think agent that hands work to Researcher and Planner sub-agents with `agentTool`                 |
+| [voice](samples/voice)                     | A voice agent: Workers AI speech recognition, a model with tools, and speech                        |
 
 | Combined sample             | Combines                               |
 | --------------------------- | -------------------------------------- |
@@ -43,7 +46,7 @@ combos/<name>/       # one Worker per combined sample
 scripts/workers.sh   # dev, deploy, and types over every Worker
 ```
 
-The dashboard Worker reaches each sample through a service binding: `/agents/<agent>/<name>` goes to the sample that owns `<agent>`, and `/mcp` and `/hub/mcp` go to the MCP servers. The UI connects with the standard `useAgent({ agent, name })`. The sample Workers have `workers_dev: false`, so the dashboard is their only public entry.
+The dashboard Worker reaches each sample through a service binding: `/agents/<agent>/<name>` goes to the sample that owns `<agent>`, and the MCP endpoints (`/mcp`, `/oauth-mcp/*` with its `/.well-known/oauth-*` documents, `/elicit/mcp`, `/x402/mcp`, `/hub/mcp`) go to the MCP servers. The UI connects with the standard `useAgent({ agent, name })`. The sample Workers have `workers_dev: false`, so the dashboard is their only public entry.
 
 ## Commands
 

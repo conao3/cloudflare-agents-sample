@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import * as z from "zod"
 import { Button, Card, Field, inputClass } from "../ui.tsx"
 
@@ -25,6 +25,14 @@ const showResult = (res: RpcResult): string => {
 
 const parseResponse = async (response: Response): Promise<RpcResult> => {
   const body = await response.text()
+  if (!response.ok) {
+    const challenge = response.headers.get("www-authenticate")
+    throw new Error(
+      [`HTTP ${response.status}`, challenge === null ? "" : `WWW-Authenticate: ${challenge}`, body]
+        .filter(Boolean)
+        .join("\n"),
+    )
+  }
   if ((response.headers.get("content-type") ?? "").includes("text/event-stream")) {
     const data = body
       .split("\n")
@@ -61,7 +69,7 @@ export const McpTester = ({
   serverName: string
   defaultTools: readonly string[]
   defaultArgs: string
-  note: string
+  note: ReactNode
 }) => {
   const url = `${window.location.origin}${endpoint}`
   const [tools, setTools] = useState<Tool[]>([])
@@ -115,7 +123,7 @@ export const McpTester = ({
         <code className="mb-3 block rounded bg-zinc-100 px-2 py-1 text-xs">
           claude mcp add --transport http {serverName} {url}
         </code>
-        <p className="text-sm text-zinc-700">{note}</p>
+        <div className="text-sm text-zinc-700">{note}</div>
       </Card>
       <Card title="Try it from the browser">
         <div className="mb-3 flex gap-2">
@@ -131,10 +139,7 @@ export const McpTester = ({
         <div className="mb-3 grid grid-cols-[1fr_2fr] gap-2">
           <Field label="Tool">
             <select className={inputClass} value={tool} onChange={(e) => setTool(e.target.value)}>
-              {(tools.length === 0
-                ? [{ name: "roll_dice" }, { name: "utc_now" }, { name: "word_count" }]
-                : tools
-              ).map((t) => (
+              {(tools.length === 0 ? defaultTools.map((name) => ({ name })) : tools).map((t) => (
                 <option key={t.name}>{t.name}</option>
               ))}
             </select>

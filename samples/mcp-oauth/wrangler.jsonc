@@ -1,0 +1,8 @@
+{
+  "name": "cfas-mcp-oauth",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "kv_namespaces": [{ "binding": "OAUTH_KV" }],
+}
