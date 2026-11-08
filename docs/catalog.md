@@ -76,92 +76,20 @@ The `AI`, `BROWSER`, and `VECTORIZE` bindings run remotely, so `wrangler dev` of
 | `research`         | combo  | chat + browser + approval + `scheduleEvery`                                                                                    |
 | `inbox`            | combo  | email + Vectorize + Workers AI                                                                                                 |
 | `tool-hub`         | combo  | MCP server + Browser Run + Vectorize                                                                                           |
-| Sample             | Kind   | Building blocks                                                                                                                |
-| ---------------    | ------ | ----------------------------------------------------------------------------------------                                       |
-| `state-counter`    | single | Agent class, `setState`, `@callable`, `this.sql`                                                                               |
-| `scheduler`        | single | `schedule` (delay, date, cron), `scheduleEvery`, `listSchedules`, `cancelSchedule`                                             |
-| `chat`             | single | `AIChatAgent`, Workers AI, server / browser-side / approval tools                                                              |
-| `mcp-server`       | single | `createMcpHandler`, `McpServer`                                                                                                |
-| `mcp-client`       | single | `addMcpServer`, `mcp.callTool`, `onMcpUpdate`                                                                                  |
-| `workflow`         | single | `runWorkflow`, `AgentWorkflow`, `waitForApproval`                                                                              |
-| `browser`          | single | Browser Run quick actions, `createQuickActionTools`                                                                            |
-| `email`            | single | `onEmail`, `routeAgentEmail`, `replyToEmail` (simulated mail from the dashboard)                                               |
-| `rag`              | single | Vectorize, `@cf/baai/bge-m3` embeddings, cited answers                                                                         |
-| `codemode`         | single | `createCodeTool`, `DynamicWorkerExecutor`, `worker_loaders`                                                                    |
-| `think`            | single | `Think`, workspace file tools, `submitMessages`                                                                                |
-| `sub-agents`       | single | `agentTool`, sub-agents, `useAgentToolEvents`, `createFetchTools`                                                              |
-| `voice`            | single | `withVoice`, `WorkersAIFluxSTT`, `WorkersAITTS`, `useVoiceAgent`                                                               |
 | `queue-fiber`      | single | `queue`, `dequeue`, `getQueue`, `startFiber`, `stash`, `onFiberRecovered`, `cancelFiber`                                       |
 | `observability`    | single | `observability` sink, `genericObservability`, `broadcast`, Workers Logs                                                        |
-| `research`         | combo  | chat + browser + approval + `scheduleEvery`                                                                                    |
-| `inbox`            | combo  | email + Vectorize + Workers AI                                                                                                 |
-| `tool-hub`         | combo  | MCP server + Browser Run + Vectorize                                                                                           |
-| Sample             | Kind   | Building blocks                                                                                                                |
-| -----------------  | ------ | -------------------------------------------------------------------------------------------------------                        |
-| `state-counter`    | single | Agent class, `setState`, `@callable`, `this.sql`                                                                               |
-| `scheduler`        | single | `schedule` (delay, date, cron), `scheduleEvery`, `listSchedules`, `cancelSchedule`                                             |
-| `chat`             | single | `AIChatAgent`, Workers AI, server / browser-side / approval tools                                                              |
-| `mcp-server`       | single | `createMcpHandler`, `McpServer`                                                                                                |
-| `mcp-client`       | single | `addMcpServer`, `mcp.callTool`, `onMcpUpdate`, `configureOAuthCallback`, `configureElicitationHandlers`                        |
 | `mcp-oauth`        | single | `OAuthProvider` (`@cloudflare/workers-oauth-provider`), `createMcpHandler`, `getMcpAuthContext`, KV                            |
 | `mcp-elicitation`  | single | `inputRequired`, `inputResponse`, `acceptedContent`, `createRequestStateCodec`                                                 |
 | `x402`             | single | `withX402`, `paidTool` (Base Sepolia testnet, no wallet)                                                                       |
-| `workflow`         | single | `runWorkflow`, `AgentWorkflow`, `waitForApproval`                                                                              |
-| `browser`          | single | Browser Run quick actions, `createQuickActionTools`                                                                            |
-| `email`            | single | `onEmail`, `routeAgentEmail`, `replyToEmail` (simulated mail from the dashboard)                                               |
-| `rag`              | single | Vectorize, `@cf/baai/bge-m3` embeddings, cited answers                                                                         |
-| `codemode`         | single | `createCodeTool`, `DynamicWorkerExecutor`, `worker_loaders`                                                                    |
-| `think`            | single | `Think`, workspace file tools, `submitMessages`                                                                                |
-| `sub-agents`       | single | `agentTool`, sub-agents, `useAgentToolEvents`, `createFetchTools`                                                              |
-| `voice`            | single | `withVoice`, `WorkersAIFluxSTT`, `WorkersAITTS`, `useVoiceAgent`                                                               |
-| `research`         | combo  | chat + browser + approval + `scheduleEvery`                                                                                    |
-| `inbox`            | combo  | email + Vectorize + Workers AI                                                                                                 |
-| `tool-hub`         | combo  | MCP server + Browser Run + Vectorize                                                                                           |
-| Sample             | Kind   | Building blocks                                                                                                                |
-| ----------------   | ------ | -----------------------------------------------------------------------------------------------------------                    |
-| `state-counter`    | single | Agent class, `setState`, `@callable`, `this.sql`                                                                               |
-| `scheduler`        | single | `schedule` (delay, date, cron), `scheduleEvery`, `listSchedules`, `cancelSchedule`                                             |
-| `chat`             | single | `AIChatAgent`, Workers AI, server / browser-side / approval tools                                                              |
-| `mcp-server`       | single | `createMcpHandler`, `McpServer`                                                                                                |
-| `mcp-client`       | single | `addMcpServer`, `mcp.callTool`, `onMcpUpdate`                                                                                  |
-| `workflow`         | single | `runWorkflow`, `AgentWorkflow`, `waitForApproval`                                                                              |
-| `browser`          | single | Browser Run quick actions, `createQuickActionTools`                                                                            |
-| `email`            | single | `onEmail`, `routeAgentEmail`, `replyToEmail` (simulated mail from the dashboard)                                               |
-| `rag`              | single | Vectorize, `@cf/baai/bge-m3` embeddings, cited answers                                                                         |
-| `codemode`         | single | `createCodeTool`, `DynamicWorkerExecutor`, `worker_loaders`                                                                    |
-| `think`            | single | `Think`, workspace file tools, `submitMessages`                                                                                |
-| `sub-agents`       | single | `agentTool`, sub-agents, `useAgentToolEvents`, `createFetchTools`                                                              |
-| `voice`            | single | `withVoice`, `WorkersAIFluxSTT`, `WorkersAITTS`, `useVoiceAgent`                                                               |
 | `push`             | single | `web-push` (VAPID), `this.schedule`, `this.sql`, service worker                                                                |
 | `github-webhook`   | single | `getAgentByName`, HMAC-SHA256 signature check, `this.sql`                                                                      |
 | `webmcp`           | single | `registerWebMcp` (`agents/experimental/webmcp`), `modelContext.registerTool` (page only, uses `mcp-server`)                    |
-| `research`         | combo  | chat + browser + approval + `scheduleEvery`                                                                                    |
-| `inbox`            | combo  | email + Vectorize + Workers AI                                                                                                 |
-| `tool-hub`         | combo  | MCP server + Browser Run + Vectorize                                                                                           |
-| Sample             | Kind   | Building blocks                                                                                                                |
-| ------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `state-counter`    | single | Agent class, `setState`, `@callable`, `this.sql`                                                                               |
-| `scheduler`        | single | `schedule` (delay, date, cron), `scheduleEvery`, `listSchedules`, `cancelSchedule`                                             |
-| `chat`             | single | `AIChatAgent`, Workers AI, server / browser-side / approval tools                                                              |
-| `mcp-server`       | single | `createMcpHandler`, `McpServer`                                                                                                |
-| `mcp-client`       | single | `addMcpServer`, `mcp.callTool`, `onMcpUpdate`                                                                                  |
-| `workflow`         | single | `runWorkflow`, `AgentWorkflow`, `waitForApproval`                                                                              |
-| `browser`          | single | Browser Run quick actions, `createQuickActionTools`                                                                            |
-| `email`            | single | `onEmail`, `routeAgentEmail`, `replyToEmail` (simulated mail from the dashboard)                                               |
-| `rag`              | single | Vectorize, `@cf/baai/bge-m3` embeddings, cited answers                                                                         |
-| `codemode`         | single | `createCodeTool`, `DynamicWorkerExecutor`, `worker_loaders`                                                                    |
-| `think`            | single | `Think`, workspace file tools, `submitMessages`                                                                                |
-| `sub-agents`       | single | `agentTool`, sub-agents, `useAgentToolEvents`, `createFetchTools`                                                              |
-| `voice`            | single | `withVoice`, `WorkersAIFluxSTT`, `WorkersAITTS`, `useVoiceAgent`                                                               |
 | `channels`         | single | `ChannelGateway`, `web()`, `Channels.forHarness`, `WebChannel`, `AiSdkHarness`, `Lifecycle`, `WebChannelClient` (experimental) |
 | `structured-input` | single | `AIChatAgent`, tools without `execute`, `addToolOutput`                                                                        |
 | `dynamic-tools`    | single | `useAgentChat({ tools })`, `createToolsFromClientSchemas`, `onToolCall`                                                        |
 | `mcp-rpc`          | single | `addMcpServer(name, binding, { props })`, `McpAgent`, RPC transport                                                            |
 | `capnweb`          | single | `useAgent({ transport: "capnweb" })`, `WebSockets` (`agents/websockets`), `RpcTarget`                                          |
 | `cross-domain`     | single | `routeAgentRequest(..., { cors: true })`, `useAgent({ host })` (runs only with `pnpm dev`)                                     |
-| `research`         | combo  | chat + browser + approval + `scheduleEvery`                                                                                    |
-| `inbox`            | combo  | email + Vectorize + Workers AI                                                                                                 |
-| `tool-hub`         | combo  | MCP server + Browser Run + Vectorize                                                                                           |
 
 ## Left out
 
@@ -171,3 +99,4 @@ The `AI`, `BROWSER`, and `VECTORIZE` bindings run remotely, so `wrangler dev` of
 | AI Search                                                          | Billed from 2026-12-01                                                                           |
 | Sending mail to arbitrary addresses (`send_email` / Email Service) | Needs Workers Paid                                                                               |
 | Real inbound mail for `email` and `inbox`                          | The available zone's MX points to another mail provider; the samples take simulated mail instead |
+| Web search (`env.AI.websearch`)                                    | Billed from AI Gateway credits; with a zero balance it answers 402 `web_search_payment_required` |

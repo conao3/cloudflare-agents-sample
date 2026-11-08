@@ -1,5 +1,4 @@
 import type { JSX } from "react"
-import { plannedSamples, samples, type Sample } from "../src/samples.ts"
 import { AiGatewayPage } from "./pages/ai-gateway.tsx"
 import { plannedSamples, samples, sourcePath, type Sample } from "../src/samples.ts"
 import { BrowserPage } from "./pages/browser.tsx"

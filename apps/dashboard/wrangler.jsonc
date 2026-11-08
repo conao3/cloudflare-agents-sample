@@ -17,9 +17,9 @@
       "/.well-known/oauth-protected-resource/*",
       "/elicit/*",
       "/x402/*",
+      "/webhooks/github",
+      "/channels/*",
     ],
-    "run_worker_first": ["/agents/*", "/mcp", "/mcp/*", "/hub/*", "/webhooks/github"],
-    "run_worker_first": ["/agents/*", "/mcp", "/mcp/*", "/hub/*", "/channels/*"],
   },
   "services": [
     { "binding": "STATE_COUNTER", "service": "cfas-state-counter" },
