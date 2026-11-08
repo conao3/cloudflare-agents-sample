@@ -8,6 +8,8 @@
     "@cfas/chat": "workspace:*",
     "@cfas/email": "workspace:*",
     "@cfas/inbox": "workspace:*",
+    "@cfas/observability": "workspace:*",
+    "@cfas/queue-fiber": "workspace:*",
     "@cfas/rag": "workspace:*",
     "@cfas/research": "workspace:*",
     "@cfas/scheduler": "workspace:*",

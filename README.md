@@ -19,6 +19,8 @@ Small, self-contained samples of the [Cloudflare Agents](https://agents.cloudfla
 | [think](samples/think)                 | The Think harness: a ready-made agent loop with a workspace filesystem and background tasks |
 | [sub-agents](samples/sub-agents)       | A Think agent that hands work to Researcher and Planner sub-agents with `agentTool`         |
 | [voice](samples/voice)                 | A voice agent: Workers AI speech recognition, a model with tools, and speech                |
+| [queue-fiber](samples/queue-fiber)     | A task queue with retries, and a durable fiber that resumes from its checkpoint             |
+| [observability](samples/observability) | A custom observability sink that streams agent events to the page; Workers Logs             |
 
 | Combined sample             | Combines                               |
 | --------------------------- | -------------------------------------- |

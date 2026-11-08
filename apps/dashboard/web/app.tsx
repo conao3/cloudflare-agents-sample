@@ -7,6 +7,8 @@ import { EmailPage } from "./pages/email.tsx"
 import { InboxPage } from "./pages/inbox.tsx"
 import { McpClientPage } from "./pages/mcp-client.tsx"
 import { McpServerPage } from "./pages/mcp-server.tsx"
+import { ObservabilityPage } from "./pages/observability.tsx"
+import { QueueFiberPage } from "./pages/queue-fiber.tsx"
 import { RagPage } from "./pages/rag.tsx"
 import { ResearchPage } from "./pages/research.tsx"
 import { SchedulerPage } from "./pages/scheduler.tsx"
@@ -34,6 +36,8 @@ const pages: Record<SampleId, () => JSX.Element> = {
   think: ThinkPage,
   "sub-agents": SubAgentsPage,
   voice: VoicePage,
+  "queue-fiber": QueueFiberPage,
+  observability: ObservabilityPage,
   research: ResearchPage,
   inbox: InboxPage,
   "tool-hub": ToolHubPage,
