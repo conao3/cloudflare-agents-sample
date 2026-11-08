@@ -1,12 +1,14 @@
 import type { JSX } from "react"
-import { plannedSamples, samples, type Sample } from "../src/samples.ts"
+import { plannedSamples, samples, sourcePath, type Sample } from "../src/samples.ts"
 import { BrowserPage } from "./pages/browser.tsx"
 import { ChatPage } from "./pages/chat.tsx"
 import { CodemodePage } from "./pages/codemode.tsx"
 import { EmailPage } from "./pages/email.tsx"
+import { GithubWebhookPage } from "./pages/github-webhook.tsx"
 import { InboxPage } from "./pages/inbox.tsx"
 import { McpClientPage } from "./pages/mcp-client.tsx"
 import { McpServerPage } from "./pages/mcp-server.tsx"
+import { PushPage } from "./pages/push.tsx"
 import { RagPage } from "./pages/rag.tsx"
 import { ResearchPage } from "./pages/research.tsx"
 import { SchedulerPage } from "./pages/scheduler.tsx"
@@ -15,6 +17,7 @@ import { SubAgentsPage } from "./pages/sub-agents.tsx"
 import { ThinkPage } from "./pages/think.tsx"
 import { ToolHubPage } from "./pages/tool-hub.tsx"
 import { VoicePage } from "./pages/voice.tsx"
+import { WebmcpPage } from "./pages/webmcp.tsx"
 import { WorkflowPage } from "./pages/workflow.tsx"
 import { useRoute } from "./route.ts"
 
@@ -34,6 +37,9 @@ const pages: Record<SampleId, () => JSX.Element> = {
   think: ThinkPage,
   "sub-agents": SubAgentsPage,
   voice: VoicePage,
+  push: PushPage,
+  "github-webhook": GithubWebhookPage,
+  webmcp: WebmcpPage,
   research: ResearchPage,
   inbox: InboxPage,
   "tool-hub": ToolHubPage,
@@ -173,7 +179,7 @@ export const App = () => {
             <p className="mb-4 text-sm text-zinc-600">
               {sample.summary}{" "}
               <a
-                href={`https://github.com/conao3/cloudflare-agents-sample/tree/master/samples/${sample.id}`}
+                href={`https://github.com/conao3/cloudflare-agents-sample/tree/master/${sourcePath(sample)}`}
                 className="text-orange-700 hover:underline"
               >
                 Source

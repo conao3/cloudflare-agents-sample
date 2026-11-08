@@ -12,6 +12,8 @@ export type Binding =
   | "THINK"
   | "SUB_AGENTS"
   | "VOICE"
+  | "PUSH"
+  | "GITHUB_WEBHOOK"
   | "RESEARCH"
   | "INBOX"
   | "TOOL_HUB"
@@ -27,7 +29,11 @@ export type Sample = {
   agents: readonly string[]
   paths: readonly string[]
   localOnly?: string
+  source?: string
 }
+
+export const sourcePath = (sample: Sample): string =>
+  sample.source ?? `${sample.kind === "combo" ? "combos" : "samples"}/${sample.id}`
 
 export const samples = [
   {
@@ -184,6 +190,43 @@ export const samples = [
     binding: "VOICE",
     agents: ["voice-agent"],
     paths: [],
+  },
+  {
+    id: "push",
+    kind: "single",
+    title: "Push notifications",
+    summary:
+      "An agent that sends Web Push notifications with VAPID, now or from a scheduled reminder, so they arrive even after the tab is closed.",
+    blocks: ["web-push", "this.schedule", "this.sql", "service worker"],
+    cost: "Free",
+    binding: "PUSH",
+    agents: ["push-agent"],
+    paths: [],
+  },
+  {
+    id: "github-webhook",
+    kind: "single",
+    title: "GitHub webhook",
+    summary:
+      "A Worker that verifies GitHub webhook signatures and hands each event to an agent per repository, which keeps stats and an event feed.",
+    blocks: ["onRequest", "getAgentByName", "HMAC-SHA256", "this.sql"],
+    cost: "Free",
+    binding: "GITHUB_WEBHOOK",
+    agents: ["repo-agent"],
+    paths: ["/webhooks/github"],
+  },
+  {
+    id: "webmcp",
+    kind: "single",
+    title: "WebMCP",
+    summary:
+      "Page tools registered with the browser's WebMCP API, plus the MCP server sample's tools bridged into the page with registerWebMcp.",
+    blocks: ["registerWebMcp", "modelContext.registerTool", "agents/experimental/webmcp"],
+    cost: "Free",
+    binding: "MCP_SERVER",
+    agents: [],
+    paths: [],
+    source: "apps/dashboard/web/pages/webmcp.tsx",
   },
   {
     id: "research",
