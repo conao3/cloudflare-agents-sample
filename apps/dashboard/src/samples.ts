@@ -12,6 +12,12 @@ export type Binding =
   | "THINK"
   | "SUB_AGENTS"
   | "VOICE"
+  | "CHANNELS"
+  | "STRUCTURED_INPUT"
+  | "DYNAMIC_TOOLS"
+  | "MCP_RPC"
+  | "CAPNWEB"
+  | "CROSS_DOMAIN"
   | "RESEARCH"
   | "INBOX"
   | "TOOL_HUB"
@@ -184,6 +190,80 @@ export const samples = [
     binding: "VOICE",
     agents: ["voice-agent"],
     paths: [],
+  },
+  {
+    id: "channels",
+    kind: "single",
+    title: "Channels",
+    summary:
+      "Experimental: a harness-backed agent shared by everyone in a room through the Web Channel; join under a name in two tabs and chat with each other and the model.",
+    blocks: ["ChannelGateway", "Channels.forHarness", "AiSdkHarness", "WebChannelClient"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "CHANNELS",
+    agents: [],
+    paths: ["/channels"],
+  },
+  {
+    id: "structured-input",
+    kind: "single",
+    title: "Structured input",
+    summary:
+      "Client-side tools without execute that the chat renders as forms: options, yes/no, and a rating, answered with addToolOutput.",
+    blocks: ["AIChatAgent", "tool without execute", "addToolOutput"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "STRUCTURED_INPUT",
+    agents: ["structured-input-agent"],
+    paths: [],
+  },
+  {
+    id: "dynamic-tools",
+    kind: "single",
+    title: "Dynamic tools",
+    summary:
+      "Tools registered by the page at runtime: add or remove them between messages, and the agent builds them from the schemas the client sends.",
+    blocks: ["useAgentChat tools", "createToolsFromClientSchemas", "onToolCall"],
+    cost: "Free (Workers AI daily allocation)",
+    binding: "DYNAMIC_TOOLS",
+    agents: ["dynamic-tools-agent"],
+    paths: [],
+  },
+  {
+    id: "mcp-rpc",
+    kind: "single",
+    title: "MCP over RPC",
+    summary:
+      "An agent that calls an MCP server in the same Worker through its Durable Object binding, with no HTTP in between.",
+    blocks: ["addMcpServer(binding)", "McpAgent", "RPC transport"],
+    cost: "Free",
+    binding: "MCP_RPC",
+    agents: ["mcp-rpc-agent"],
+    paths: [],
+  },
+  {
+    id: "capnweb",
+    kind: "single",
+    title: "Cap'n Web transport",
+    summary:
+      "The same room over useAgent's default cf-websocket transport and the experimental capnweb transport, where an RpcTarget result arrives as a live stub.",
+    blocks: ['transport: "capnweb"', "agent.stub", "RpcTarget", "WebSockets"],
+    cost: "Free",
+    binding: "CAPNWEB",
+    agents: ["capnweb-room"],
+    paths: [],
+  },
+  {
+    id: "cross-domain",
+    kind: "single",
+    title: "Cross-domain",
+    summary:
+      "A page on one origin connecting to an agent on another with useAgent({ host }), and routeAgentRequest's cors option for HTTP.",
+    blocks: ["routeAgentRequest cors", "useAgent host", "Origin"],
+    cost: "Free",
+    binding: "CROSS_DOMAIN",
+    agents: ["cross-domain-agent"],
+    paths: [],
+    localOnly:
+      "The second origin is 127.0.0.1 next to localhost, so this sample runs only with pnpm dev.",
   },
   {
     id: "research",

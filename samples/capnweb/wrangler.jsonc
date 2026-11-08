@@ -1,0 +1,11 @@
+{
+  "name": "cfas-capnweb",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "CapnwebRoom", "class_name": "CapnwebRoom" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["CapnwebRoom"] }],
+}

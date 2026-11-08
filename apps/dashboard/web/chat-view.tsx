@@ -1,4 +1,4 @@
-import { useAgentChat } from "@cloudflare/ai-chat/react"
+import { useAgentChat, type AITool } from "@cloudflare/ai-chat/react"
 import { useAgentChat as useThinkChat } from "@cloudflare/think/react"
 import { getToolName, isToolUIPart, type UIMessage } from "ai"
 import { useAgent } from "agents/react"
@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react"
 import { InlineMarkdown } from "./markdown.tsx"
 import { Button, Card, ConnectionBadge, inputClass } from "./ui.tsx"
 
-type ToolPart = Extract<UIMessage["parts"][number], { toolCallId: string }>
+export type ToolPart = Extract<UIMessage["parts"][number], { toolCallId: string }>
 
 const ToolCall = ({
   part,
@@ -55,6 +55,8 @@ export const ChatView = ({
   onTurnEnd,
   side,
   harness = "ai-chat",
+  tools,
+  renderTool,
 }: {
   agentName: string
   instance: string
@@ -62,24 +64,41 @@ export const ChatView = ({
   onTurnEnd?: () => void
   side?: ReactNode
   harness?: "ai-chat" | "think"
+  tools?: Record<string, AITool>
+  renderTool?: (part: ToolPart, answer: (output: unknown) => void) => ReactNode | undefined
 }) => {
   const agent = useAgent({ agent: agentName, name: instance })
   const useChat = harness === "think" ? useThinkChat : useAgentChat
-  const { messages, sendMessage, clearHistory, addToolApprovalResponse, stop, isStreaming, error } =
-    useChat({
-      agent,
-      onToolCall: async ({ toolCall, addToolOutput }) => {
-        if (toolCall.toolName === "getLocalTime") {
-          addToolOutput({
-            toolCallId: toolCall.toolCallId,
-            output: {
-              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-              localTime: new Date().toLocaleString(),
-            },
-          })
-        }
-      },
-    })
+  const {
+    messages,
+    sendMessage,
+    clearHistory,
+    addToolApprovalResponse,
+    addToolOutput: answerTool,
+    stop,
+    isStreaming,
+    error,
+  } = useChat({
+    agent,
+    tools,
+    onToolCall: async ({ toolCall, addToolOutput }) => {
+      const clientTool = tools?.[toolCall.toolName]
+      if (clientTool?.execute !== undefined) {
+        addToolOutput({
+          toolCallId: toolCall.toolCallId,
+          output: await clientTool.execute(toolCall.input),
+        })
+      } else if (toolCall.toolName === "getLocalTime") {
+        addToolOutput({
+          toolCallId: toolCall.toolCallId,
+          output: {
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            localTime: new Date().toLocaleString(),
+          },
+        })
+      }
+    },
+  })
   const [input, setInput] = useState("")
   const endRef = useRef<HTMLDivElement>(null)
   const wasStreaming = useRef(false)
@@ -157,6 +176,10 @@ export const ChatView = ({
                   )
                 }
                 if (isToolUIPart(part)) {
+                  const custom = renderTool?.(part, (output) =>
+                    answerTool({ toolCallId: part.toolCallId, output }),
+                  )
+                  if (custom !== undefined) return <div key={part.toolCallId}>{custom}</div>
                   return (
                     <ToolCall
                       key={part.toolCallId}

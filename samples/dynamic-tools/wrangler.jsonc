@@ -1,0 +1,12 @@
+{
+  "name": "cfas-dynamic-tools",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "ai": { "binding": "AI", "remote": true },
+  "durable_objects": {
+    "bindings": [{ "name": "DynamicToolsAgent", "class_name": "DynamicToolsAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DynamicToolsAgent"] }],
+}

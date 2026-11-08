@@ -1,16 +1,22 @@
 import type { JSX } from "react"
 import { plannedSamples, samples, type Sample } from "../src/samples.ts"
 import { BrowserPage } from "./pages/browser.tsx"
+import { CapnwebPage } from "./pages/capnweb.tsx"
+import { ChannelsPage } from "./pages/channels.tsx"
 import { ChatPage } from "./pages/chat.tsx"
 import { CodemodePage } from "./pages/codemode.tsx"
+import { CrossDomainPage } from "./pages/cross-domain.tsx"
+import { DynamicToolsPage } from "./pages/dynamic-tools.tsx"
 import { EmailPage } from "./pages/email.tsx"
 import { InboxPage } from "./pages/inbox.tsx"
 import { McpClientPage } from "./pages/mcp-client.tsx"
+import { McpRpcPage } from "./pages/mcp-rpc.tsx"
 import { McpServerPage } from "./pages/mcp-server.tsx"
 import { RagPage } from "./pages/rag.tsx"
 import { ResearchPage } from "./pages/research.tsx"
 import { SchedulerPage } from "./pages/scheduler.tsx"
 import { StateCounterPage } from "./pages/state-counter.tsx"
+import { StructuredInputPage } from "./pages/structured-input.tsx"
 import { SubAgentsPage } from "./pages/sub-agents.tsx"
 import { ThinkPage } from "./pages/think.tsx"
 import { ToolHubPage } from "./pages/tool-hub.tsx"
@@ -34,6 +40,12 @@ const pages: Record<SampleId, () => JSX.Element> = {
   think: ThinkPage,
   "sub-agents": SubAgentsPage,
   voice: VoicePage,
+  channels: ChannelsPage,
+  "structured-input": StructuredInputPage,
+  "dynamic-tools": DynamicToolsPage,
+  "mcp-rpc": McpRpcPage,
+  capnweb: CapnwebPage,
+  "cross-domain": CrossDomainPage,
   research: ResearchPage,
   inbox: InboxPage,
   "tool-hub": ToolHubPage,
