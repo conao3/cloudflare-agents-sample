@@ -8,7 +8,7 @@
   "dependencies": {
     "agents": "^0.33.0",
     "ai": "^7.0.0",
-    "postal-mime": "^2.7.5",
+    "postal-mime": "^4.2.0",
     "workers-ai-provider": "^4.0.1"
   }
 }
