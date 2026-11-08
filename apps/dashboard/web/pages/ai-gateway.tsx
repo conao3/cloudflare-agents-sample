@@ -90,8 +90,9 @@ export const AiGatewayPage = () => {
         </div>
         {error !== null && <p className="mt-2 text-sm text-red-700">{error}</p>}
         <p className="mt-3 text-xs text-zinc-500">
-          Ask the same question twice: the second answer comes from the gateway cache. Open the log
-          to see the cache hit, latency, and tokens the gateway recorded.
+          Ask the same question again a few seconds after the first answer: it comes from the
+          gateway cache. Open the log to see the cache hit, latency, and tokens the gateway
+          recorded.
         </p>
       </Card>
       <Card title={`Calls (${calls.length})`}>
