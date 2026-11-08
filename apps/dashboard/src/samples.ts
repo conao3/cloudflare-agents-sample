@@ -14,6 +14,8 @@ export type Binding =
   | "VOICE"
   | "STORAGE"
   | "AI_GATEWAY"
+  | "QUEUE_FIBER"
+  | "OBSERVABILITY"
   | "RESEARCH"
   | "INBOX"
   | "TOOL_HUB"
@@ -209,6 +211,30 @@ export const samples = [
     cost: "Free",
     binding: "AI_GATEWAY",
     agents: ["ai-gateway-agent"],
+    paths: [],
+  },
+  {
+    id: "queue-fiber",
+    kind: "single",
+    title: "Queue and fibers",
+    summary:
+      "Background work that survives eviction: a FIFO task queue with retries, and a durable fiber that checkpoints with stash and resumes from the checkpoint after a restart.",
+    blocks: ["queue", "dequeue", "startFiber", "stash", "onFiberRecovered", "cancelFiber"],
+    cost: "Free",
+    binding: "QUEUE_FIBER",
+    agents: ["queue-fiber-agent"],
+    paths: [],
+  },
+  {
+    id: "observability",
+    kind: "single",
+    title: "Observability",
+    summary:
+      "A custom observability sink that still publishes every agent event and also streams it to the page as a live log, with Workers Logs enabled.",
+    blocks: ["observability", "genericObservability", "broadcast", "Workers Logs"],
+    cost: "Free (200,000 log events/day)",
+    binding: "OBSERVABILITY",
+    agents: ["observability-agent"],
     paths: [],
   },
   {

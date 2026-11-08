@@ -1,0 +1,11 @@
+{
+  "name": "cfas-queue-fiber",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "QueueFiberAgent", "class_name": "QueueFiberAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["QueueFiberAgent"] }],
+}

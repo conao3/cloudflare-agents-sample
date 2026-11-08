@@ -1,0 +1,12 @@
+{
+  "name": "cfas-observability",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "observability": { "enabled": true },
+  "durable_objects": {
+    "bindings": [{ "name": "ObservabilityAgent", "class_name": "ObservabilityAgent" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ObservabilityAgent"] }],
+}

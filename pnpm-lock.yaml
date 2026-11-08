@@ -38,6 +38,12 @@ importers:
       '@cfas/inbox':
         specifier: workspace:*
         version: link:../../combos/inbox
+      '@cfas/observability':
+        specifier: workspace:*
+        version: link:../../samples/observability
+      '@cfas/queue-fiber':
+        specifier: workspace:*
+        version: link:../../samples/queue-fiber
       '@cfas/rag':
         specifier: workspace:*
         version: link:../../samples/rag
@@ -228,6 +234,21 @@ importers:
       '@modelcontextprotocol/server':
         specifier: 2.4.0
         version: 2.4.0
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+      zod:
+        specifier: ^4.0.0
+        version: 4.6.7
+
+  samples/observability:
+    dependencies:
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+
+  samples/queue-fiber:
+    dependencies:
       agents:
         specifier: ^0.33.0
         version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
