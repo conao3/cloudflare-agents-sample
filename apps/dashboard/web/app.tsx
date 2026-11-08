@@ -7,6 +7,8 @@ import { CodemodePage } from "./pages/codemode.tsx"
 import { EmailPage } from "./pages/email.tsx"
 import { InboxPage } from "./pages/inbox.tsx"
 import { McpClientPage } from "./pages/mcp-client.tsx"
+import { McpElicitationPage } from "./pages/mcp-elicitation.tsx"
+import { McpOauthPage } from "./pages/mcp-oauth.tsx"
 import { McpServerPage } from "./pages/mcp-server.tsx"
 import { ObservabilityPage } from "./pages/observability.tsx"
 import { QueueFiberPage } from "./pages/queue-fiber.tsx"
@@ -20,6 +22,7 @@ import { ThinkPage } from "./pages/think.tsx"
 import { ToolHubPage } from "./pages/tool-hub.tsx"
 import { VoicePage } from "./pages/voice.tsx"
 import { WorkflowPage } from "./pages/workflow.tsx"
+import { X402Page } from "./pages/x402.tsx"
 import { useRoute } from "./route.ts"
 
 type SampleId = (typeof samples)[number]["id"]
@@ -30,6 +33,9 @@ const pages: Record<SampleId, () => JSX.Element> = {
   chat: ChatPage,
   "mcp-server": McpServerPage,
   "mcp-client": McpClientPage,
+  "mcp-oauth": McpOauthPage,
+  "mcp-elicitation": McpElicitationPage,
+  x402: X402Page,
   workflow: WorkflowPage,
   browser: BrowserPage,
   email: EmailPage,

@@ -4,6 +4,9 @@ export type Binding =
   | "CHAT"
   | "MCP_SERVER"
   | "MCP_CLIENT"
+  | "MCP_OAUTH"
+  | "MCP_ELICITATION"
+  | "X402"
   | "WORKFLOW"
   | "BROWSER"
   | "EMAIL"
@@ -85,12 +88,59 @@ export const samples = [
     id: "mcp-client",
     kind: "single",
     title: "MCP client",
-    summary: "An agent that connects to remote MCP servers, lists their tools, and calls them.",
-    blocks: ["addMcpServer", "mcp.callTool", "onMcpUpdate"],
+    summary:
+      "An agent that connects to remote MCP servers, authorizes with OAuth in a popup, answers elicitations from a form, and calls tools.",
+    blocks: [
+      "addMcpServer",
+      "mcp.callTool",
+      "onMcpUpdate",
+      "configureOAuthCallback",
+      "configureElicitationHandlers",
+    ],
     cost: "Free",
     binding: "MCP_CLIENT",
     agents: ["mcp-client-agent"],
     paths: [],
+  },
+  {
+    id: "mcp-oauth",
+    kind: "single",
+    title: "MCP server with OAuth",
+    summary:
+      "An MCP server behind OAuth 2.1 from workers-oauth-provider: dynamic client registration, a consent page for a demo user, and tools that read who called them.",
+    blocks: ["OAuthProvider", "createMcpHandler", "getMcpAuthContext"],
+    cost: "Free (KV free tier)",
+    binding: "MCP_OAUTH",
+    agents: [],
+    paths: [
+      "/oauth-mcp",
+      "/.well-known/oauth-authorization-server",
+      "/.well-known/oauth-protected-resource",
+    ],
+  },
+  {
+    id: "mcp-elicitation",
+    kind: "single",
+    title: "MCP elicitation",
+    summary:
+      "A stateless MCP tool that asks the user for input in two rounds with multi-round-trip requests, carrying signed state between requests.",
+    blocks: ["inputRequired", "acceptedContent", "createRequestStateCodec"],
+    cost: "Free",
+    binding: "MCP_ELICITATION",
+    agents: [],
+    paths: ["/elicit/mcp"],
+  },
+  {
+    id: "x402",
+    kind: "single",
+    title: "x402 paid tools",
+    summary:
+      "An MCP server with a tool that costs USD 0.01 on the Base Sepolia testnet. Unpaid calls get the x402 payment requirements back.",
+    blocks: ["withX402", "paidTool", "x402"],
+    cost: "Free (testnet, no wallet needed to try)",
+    binding: "X402",
+    agents: [],
+    paths: ["/x402/mcp"],
   },
   {
     id: "workflow",
