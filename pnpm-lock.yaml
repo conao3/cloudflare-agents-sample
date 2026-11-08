@@ -29,9 +29,21 @@ importers:
       '@cfas/browser':
         specifier: workspace:*
         version: link:../../samples/browser
+      '@cfas/capnweb':
+        specifier: workspace:*
+        version: link:../../samples/capnweb
+      '@cfas/channels':
+        specifier: workspace:*
+        version: link:../../samples/channels
       '@cfas/chat':
         specifier: workspace:*
         version: link:../../samples/chat
+      '@cfas/cross-domain':
+        specifier: workspace:*
+        version: link:../../samples/cross-domain
+      '@cfas/dynamic-tools':
+        specifier: workspace:*
+        version: link:../../samples/dynamic-tools
       '@cfas/email':
         specifier: workspace:*
         version: link:../../samples/email
@@ -44,6 +56,9 @@ importers:
       '@cfas/mcp-client':
         specifier: workspace:*
         version: link:../../samples/mcp-client
+      '@cfas/mcp-rpc':
+        specifier: workspace:*
+        version: link:../../samples/mcp-rpc
       '@cfas/observability':
         specifier: workspace:*
         version: link:../../samples/observability
@@ -68,6 +83,9 @@ importers:
       '@cfas/storage':
         specifier: workspace:*
         version: link:../../samples/storage
+      '@cfas/structured-input':
+        specifier: workspace:*
+        version: link:../../samples/structured-input
       '@cfas/think':
         specifier: workspace:*
         version: link:../../samples/think
@@ -187,6 +205,27 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1(@ai-sdk/anthropic@4.0.98(zod@4.6.7))(@ai-sdk/openai@4.0.110(zod@4.6.7))(@ai-sdk/provider@4.0.36)(ai@7.0.164(zod@4.6.7))
 
+  samples/capnweb:
+    dependencies:
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+
+  samples/channels:
+    dependencies:
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+      ai:
+        specifier: ^7.0.0
+        version: 7.0.164(zod@4.6.7)
+      workers-ai-provider:
+        specifier: ^4.0.1
+        version: 4.0.1(@ai-sdk/anthropic@4.0.98(zod@4.6.7))(@ai-sdk/openai@4.0.110(zod@4.6.7))(@ai-sdk/provider@4.0.36)(ai@7.0.164(zod@4.6.7))
+      zod:
+        specifier: ^4.0.0
+        version: 4.6.7
+
   samples/chat:
     dependencies:
       '@cloudflare/ai-chat':
@@ -225,6 +264,27 @@ importers:
       zod:
         specifier: ^4.0.0
         version: 4.6.7
+
+  samples/cross-domain:
+    dependencies:
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+
+  samples/dynamic-tools:
+    dependencies:
+      '@cloudflare/ai-chat':
+        specifier: ^0.12.2
+        version: 0.12.2(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(agents@0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(react@19.3.1)
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+      ai:
+        specifier: ^7.0.0
+        version: 7.0.164(zod@4.6.7)
+      workers-ai-provider:
+        specifier: ^4.0.1
+        version: 4.0.1(@ai-sdk/anthropic@4.0.98(zod@4.6.7))(@ai-sdk/openai@4.0.110(zod@4.6.7))(@ai-sdk/provider@4.0.36)(ai@7.0.164(zod@4.6.7))
 
   samples/email:
     dependencies:
@@ -270,6 +330,18 @@ importers:
       '@modelcontextprotocol/server':
         specifier: 2.4.0
         version: 2.4.0
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+      zod:
+        specifier: ^4.0.0
+        version: 4.6.7
+
+  samples/mcp-rpc:
+    dependencies:
+      '@modelcontextprotocol/sdk':
+        specifier: 1.32.2
+        version: 1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7)
       agents:
         specifier: ^0.33.0
         version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
@@ -346,6 +418,24 @@ importers:
       agents:
         specifier: ^0.33.0
         version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+
+  samples/structured-input:
+    dependencies:
+      '@cloudflare/ai-chat':
+        specifier: ^0.12.2
+        version: 0.12.2(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(agents@0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(react@19.3.1)
+      agents:
+        specifier: ^0.33.0
+        version: 0.33.0(@ai-sdk/provider@4.0.36)(@ai-sdk/react@4.0.168(react@19.3.1)(zod@4.6.7))(@babel/core@8.1.0)(@babel/runtime@7.29.13)(@cloudflare/codemode@0.5.6(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(@modelcontextprotocol/client@2.4.0)(@modelcontextprotocol/sdk@1.32.2(@cfworker/json-schema@4.1.6)(zod@4.6.7))(@modelcontextprotocol/server@2.4.0)(@types/node@26.6.6)(@x402/core@2.30.0)(@x402/evm@2.30.0(typescript@5.9.3))(ai@7.0.164(zod@4.6.7))(chat@4.44.0(ai@7.0.164(zod@4.6.7))(zod@4.6.7))(jiti@2.7.0)(just-bash@3.6.0)(react@19.3.1)(rolldown@1.3.0)(typescript@5.9.3)(zod@4.6.7)
+      ai:
+        specifier: ^7.0.0
+        version: 7.0.164(zod@4.6.7)
+      workers-ai-provider:
+        specifier: ^4.0.1
+        version: 4.0.1(@ai-sdk/anthropic@4.0.98(zod@4.6.7))(@ai-sdk/openai@4.0.110(zod@4.6.7))(@ai-sdk/provider@4.0.36)(ai@7.0.164(zod@4.6.7))
+      zod:
+        specifier: ^4.0.0
+        version: 4.6.7
 
   samples/sub-agents:
     dependencies:
