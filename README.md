@@ -2,6 +2,8 @@
 
 Small, self-contained samples of the [Cloudflare Agents](https://agents.cloudflare.com/) platform, with a dashboard to list them and try each one in the browser. Each single sample exercises one building block; the combined samples put several together. Everything runs on the Workers Free plan.
 
+The dashboard is live at <https://cloudflare-agents-sample.conao3.com>.
+
 ## Samples
 
 | Sample                                        | Shows                                                                                           |
@@ -77,6 +79,8 @@ pnpm deploy         # deploy the samples and combos, then the dashboard
 ```sh
 wrangler vectorize create cfas-rag --dimensions=1024 --metric=cosine
 ```
+
+`pnpm deploy` serves the dashboard on the custom domain set in the `production` environment of `apps/dashboard/wrangler.jsonc`; a deploy to another account changes that route to a domain on its own zone.
 
 `push` and `github-webhook` need secrets in their `.dev.vars` (and `wrangler secret put` for a deploy); `wrangler dev` warns when they are missing, and the samples answer with an error until they are set. Their READMEs show how to generate the values.
 

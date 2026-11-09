@@ -57,6 +57,8 @@
   "env": {
     "production": {
       "name": "cfas-dashboard",
+      "workers_dev": false,
+      "routes": [{ "pattern": "cloudflare-agents-sample.conao3.com", "custom_domain": true }],
       "services": [
         { "binding": "STATE_COUNTER", "service": "cfas-state-counter" },
         { "binding": "SCHEDULER", "service": "cfas-scheduler" },
