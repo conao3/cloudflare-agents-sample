@@ -172,8 +172,7 @@ export class RepoAgent extends Agent<Env, RepoState> {
       actor: env.sender?.login ?? null,
       receivedAt: new Date().toISOString(),
     }
-    void this
-      .sql`insert into events (id, delivery, type, action, title, detail, url, actor, received_at)
+    void this.sql`insert into events (id, delivery, type, action, title, detail, url, actor, received_at)
       values (${event.id}, ${event.delivery}, ${event.type}, ${event.action}, ${event.title}, ${event.detail}, ${event.url}, ${event.actor}, ${event.receivedAt})`
     void this.sql`delete from events where id not in (
       select id from events order by received_at desc limit ${eventLimit}

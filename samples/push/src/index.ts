@@ -106,8 +106,7 @@ export class PushAgent extends Agent<Env, PushState> {
 
   @callable()
   listReminders(): Reminder[] {
-    return this
-      .sql<ReminderRow>`select * from reminders order by created_at desc limit ${reminderLimit}`.map(
+    return this.sql<ReminderRow>`select * from reminders order by created_at desc limit ${reminderLimit}`.map(
       (row) => ({
         id: row.id,
         scheduleId: row.schedule_id,
@@ -132,8 +131,7 @@ export class PushAgent extends Agent<Env, PushState> {
       publicKey: required(this.env.VAPID_PUBLIC_KEY, "VAPID_PUBLIC_KEY"),
       privateKey: required(this.env.VAPID_PRIVATE_KEY, "VAPID_PRIVATE_KEY"),
     }
-    const subscriptions = this
-      .sql<SubscriptionRow>`select endpoint, p256dh, auth from subscriptions`
+    const subscriptions = this.sql<SubscriptionRow>`select endpoint, p256dh, auth from subscriptions`
     const payload = JSON.stringify({ title, body, tag: crypto.randomUUID() })
     const deliveries = await Promise.all(
       subscriptions.map(async (sub): Promise<Delivery> => {

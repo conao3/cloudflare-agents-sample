@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@ai-sdk/react": "^4.0.0",
+    "@ai-sdk/react": "^4.0.169",
     "@cfas/ai-gateway": "workspace:*",
     "@cfas/browser": "workspace:*",
     "@cfas/capnweb": "workspace:*",
@@ -14,11 +14,11 @@
     "@cfas/email": "workspace:*",
     "@cfas/github-webhook": "workspace:*",
     "@cfas/inbox": "workspace:*",
-    "@cfas/observability": "workspace:*",
-    "@cfas/queue-fiber": "workspace:*",
     "@cfas/mcp-client": "workspace:*",
-    "@cfas/push": "workspace:*",
     "@cfas/mcp-rpc": "workspace:*",
+    "@cfas/observability": "workspace:*",
+    "@cfas/push": "workspace:*",
+    "@cfas/queue-fiber": "workspace:*",
     "@cfas/rag": "workspace:*",
     "@cfas/research": "workspace:*",
     "@cfas/scheduler": "workspace:*",
@@ -31,16 +31,16 @@
     "@cloudflare/think": "^0.23.0",
     "@modelcontextprotocol/sdk": "1.32.2",
     "agents": "^0.33.0",
-    "ai": "^7.0.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "zod": "^4.0.0"
+    "ai": "^7.0.165",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.0",
-    "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
-    "@vitejs/plugin-react": "^6.0.0",
-    "tailwindcss": "^4.1.0"
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "tailwindcss": "^4.3.5"
   }
 }

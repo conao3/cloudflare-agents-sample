@@ -29,8 +29,7 @@ export class CounterAgent extends Agent<Env, CounterState> {
 
   @callable()
   history(limit: number): HistoryRow[] {
-    return this
-      .sql<HistoryRow>`select id, delta, count, at from history order by id desc limit ${limit}`
+    return this.sql<HistoryRow>`select id, delta, count, at from history order by id desc limit ${limit}`
   }
 }
 

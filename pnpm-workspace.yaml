@@ -9,4 +9,5 @@ allowBuilds:
   "@mongodb-js/zstd": false
   node-liblzma: false
 overrides:
-  vite: npm:@voidzero-dev/vite-plus-core@1.4.0
+  vite: npm:@voidzero-dev/vite-plus-core@1.5.0
+  undici: ">=7.30.2"
