@@ -6,8 +6,8 @@
     "./types": "./src/types.ts"
   },
   "dependencies": {
-    "agents": "^0.33.0",
-    "ai": "^7.0.173",
+    "agents": "^0.34.0",
+    "ai": "^7.0.179",
     "workers-ai-provider": "^4.0.1"
   }
 }

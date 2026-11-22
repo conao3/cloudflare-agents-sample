@@ -6,6 +6,6 @@
     "./types": "./src/types.ts"
   },
   "dependencies": {
-    "agents": "^0.33.0"
+    "agents": "^0.34.0"
   }
 }
