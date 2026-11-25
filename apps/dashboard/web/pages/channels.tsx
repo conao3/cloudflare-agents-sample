@@ -149,7 +149,7 @@ const Room = ({ client, name, room }: { client: WebChannelClient; name: string; 
                       {part.owner !== undefined && (
                         <span className="text-zinc-500">
                           {" "}
-                          · runs in {part.owner === you?.id ? "your" : `${part.owner}'s`} browser
+                          / runs in {part.owner === you?.id ? "your" : `${part.owner}'s`} browser
                         </span>
                       )}
                       {part.output !== undefined && (

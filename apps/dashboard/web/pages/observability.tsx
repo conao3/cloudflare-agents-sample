@@ -117,7 +117,7 @@ export const ObservabilityPage = () => {
           <ConnectionBadge connected={connected} />
           {state !== undefined && (
             <span className="text-xs text-zinc-500">
-              counter {state.counter} · ticks {state.ticks} · jobs {state.jobs} · fibers{" "}
+              counter {state.counter} / ticks {state.ticks} / jobs {state.jobs} / fibers{" "}
               {state.fibers}
             </span>
           )}
