@@ -4,7 +4,17 @@ Small, self-contained samples of the [Cloudflare Agents](https://agents.cloudfla
 
 The dashboard is live at <https://cloudflare-agents-sample.conao3.com>.
 
+![Dashboard listing the samples as cards](images/dashboard.png)
+
+The screenshots in this README show a local `wrangler dev` with sample data.
+
 ## Samples
+
+![State counter page with the current count and its SQLite history](images/state-counter.png)
+
+![Workflow page with one run waiting for approval and one completed run](images/workflow.png)
+
+![Email page with a simulated message and the reply from the agent](images/email.png)
 
 | Sample                                        | Shows                                                                                           |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
